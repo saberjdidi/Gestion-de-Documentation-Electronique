@@ -1,0 +1,155 @@
+
+
+
+<div class="home">
+    <div class="container-fluid display-table">
+        <div class="row display-table-row">
+            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+                
+                <div class="navi">
+                        <ul>
+                                <li ><a routerLink="/dashboard"><i class="fa fa-dashboard" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Dashboard</span></a></li>
+                                <li><a routerLink="/categorie"><i class="fa fa-list" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Categorie</span></a></li>
+                                <li><a routerLink="/document"><i class="fa fa-file-text-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Document</span></a></li>
+                                <li class="active"><a routerLink="/actualite"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Actualité</span></a></li>
+                                <li><a routerLink="/user"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Utilisateur</span></a></li>
+                                <li><a routerLink="/demande-document"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Commande</span></a></li>
+                                <li><a routerLink="/list-contact"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Contact</span></a></li>
+        
+                        </ul>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-11 display-table-cell v-align">
+                <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+                <div class="row">
+                    <header>
+                        <div class="col-md-7">
+                            
+                            <div class="search hidden-xs hidden-sm">
+                              <input type="text" class="fa fa-search" placeholder="Search" id="search">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="header-rightside">
+                                <ul class="list-inline header-top pull-right">
+                                    <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">Logout</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+                </div>
+                <div class="user-dashboard">
+                    <h1>Actualité</h1>
+                    
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                      
+                      <div class="col-md-6">
+                          <div class="card">
+                              <div class="card-body">
+                                  <div class="row">
+                                      <div class="col-md-6 border-right">
+                                          
+                                      </div>
+                                      
+                                      
+                                  </div>
+                                  <hr>
+                                  <div class="row">
+                                      <div class="col-md-8 bg-light card-body">
+                                          
+                                          <form [formGroup]="addForm" >
+                                                <div class="form-group">
+                                                  <label for="text" class="col-12 col-form-label">Titre</label> 
+                                                  <div class="col-12">
+                                                    <input class="form-control" type="text" formControlName="titre" placeholder="titre">
+                                                  </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="form-group">
+                                                  <label for="description" class="col-12 col-form-label">Description</label> 
+                                                  <div class="col-12">
+                                                    <textarea  cols="40" rows="4" class="form-control" formControlName="description" ></textarea>
+                                                  </div>
+                                                </div> 
+                                                <div class="form-group row">
+                                                  <div class="col-12">
+                                                   &nbsp; &nbsp; &nbsp; <button  type="submit" class="btn btn-primary" (click)="actualiteBtn()" ><i class="fa fa-plus-circle"></i> &nbsp; Ajouter</button>
+                                                  </div>
+                                                </div>
+                                              </form>
+                                      </div>
+                                      
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      
+                      <br>
+                   <div class="container" >
+                    <div class="row" >
+                     <ul class="thumbnails" >
+                        <div class="col-md-3 col-sm-3" *ngFor="let act of actualite">
+                            <div class="thumbnail" >
+                                <img src="assets/images.jpg" alt="ALT NAME" class="img-responsive" />
+                                <div class="caption">
+                                     <h2>{{act.titre}}</h2>
+                                    <h4>{{act.description}}</h4>
+                                    <p align="center">
+                                        <button class="btn btn-danger" (click)="deleteBtn(act._id)" ><i class="fa fa-trash"></i></button> &nbsp;
+                                        <button class="btn btn-success" (click)="updateActuality = act" ><i class="fa fa-upload"></i></button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                     </ul>
+                    </div>
+                  </div>
+
+                  <div class="col-md-8 bg-light card-body" *ngIf="updateActuality">
+                                          
+                       
+                              <div class="form-group">
+                                <label for="text" class="col-12 col-form-label">Titre</label> 
+                                <div class="col-12">
+                                  <input class="form-control" type="text" [(ngModel)]="updateActuality.titre" placeholder="titre">
+                                </div>
+                              </div>
+                              
+                              
+                              <div class="form-group">
+                                <label for="description" class="col-12 col-form-label">Description</label> 
+                                <div class="col-12">
+                                  <textarea  cols="40" rows="4" class="form-control" [(ngModel)]="updateActuality.description" ></textarea>
+                                </div>
+                              </div> 
+                              <div class="form-group row">
+                                <div class="col-12">
+                                 &nbsp; &nbsp; &nbsp; <button  type="submit" class="btn btn-info" (click)="updateActualityBtn()" > Modifier</button>
+                                </div>
+                              </div>
+                           
+                    </div>
+                   
+
+                    </div>
+                  </div>
+                   
+            </div>
+
+            
+        </div>
+       
+    </div>
+
+
+
+    <!-- Modal -->
+   
+
+  </div>

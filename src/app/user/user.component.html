@@ -1,0 +1,176 @@
+<div class="home">
+  <div class="container-fluid display-table">
+      <div class="row display-table-row">
+          <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+          
+              <div class="navi">
+                  <ul>
+                      <li><a routerLink="/dashboard"><i class="fa fa-dashboard" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Dashboard</span></a></li>
+                      <li><a routerLink="/categorie"><i class="fa fa-list" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Categorie</span></a></li>
+                      <li><a routerLink="/document"><i class="fa fa-file-text-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Document</span></a></li>
+                      <li><a routerLink="/actualite"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Actualité</span></a></li>
+                      <li class="active"><a routerLink="/user"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Utilisateur</span></a></li>
+                      <li><a routerLink="/demande-document"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Commande</span></a></li>
+                      <li><a routerLink="/list-contact"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Contact</span></a></li>
+
+                  </ul>
+              </div>
+          </div>
+          <div class="col-md-10 col-sm-11 display-table-cell v-align">
+              <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+              <div class="row">
+                  <header>
+                      <div class="col-md-7">
+                          
+                          <div class="search hidden-xs hidden-sm">
+                              <input type="text" placeholder="Search" id="search">
+                          </div>
+                      </div>
+                      <div class="col-md-5">
+                          <div class="header-rightside">
+                              <ul class="list-inline header-top pull-right">
+                                  <li class="hidden-xs"><a href="#" class="add-project" (click)="logout()" ><i class="fa fa-sign-out"></i> &nbsp; Logout</a></li>
+                                 
+                              </ul>
+                          </div>
+                      </div>
+                  </header>
+              </div>
+              <div class="user-dashboard">
+                
+                  <h2>Utilisateurs</h2>
+                  <br>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-7">
+                      <form [formGroup]="addForm">
+          
+                        <div class="form-group">
+                          <label> <strong>Nom</strong></label>
+                          <input type="text" class="form-control" formControlName="nom" placeholder="nom">
+                        </div>
+                        <div class="form-group">
+                          <label><strong>Prenom</strong></label>
+                          <input type="text" class="form-control" formControlName="prenom" placeholder="prenom">
+                        </div>
+                        <div class="form-group">
+                          <label><strong>Email</strong></label>
+                          <input type="text" class="form-control" formControlName="email" placeholder="email">
+                        </div>
+                        <div class="form-group">
+                          <label><strong>Password</strong></label>
+                          <input type="password" class="form-control" formControlName="password" placeholder="password">
+                        </div>
+                        
+                        <input type="submit" value="Ajouter" (click)="userBtn()" class="btn btn-primary ">
+                        <div class="clearfix"></div>
+                      </form>
+                    </div>
+                
+                 
+                  </div>
+                </div>    
+                  
+              </div>
+        <br><br>
+        
+              <div class="container">
+                  <h1> <i class="fa fa-users"></i> &nbsp; Liste Utilisateurs</h1>
+                <div class="widget stacked widget-table action-table">
+               
+                 <div class="widget-content">
+               
+                   <table class="table table-striped table-bordered">
+                     <thead>
+                       <tr>
+                         <th>Nom</th>
+                         <th>Prenom</th>
+                         <th>Email</th>
+                         <th>Role</th>
+                         
+                         
+               
+                         <th class="td-actions"></th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       <!-- {{user | json}} -->
+                       <tr *ngFor="let user of users">
+                         <td>{{user.nom}}</td>
+                         <td>{{user.prenom}}</td>
+                         <td>{{user.email}}</td>
+                         <td>{{user.role}}</td>
+               
+               
+                         <td class="td-actions">
+                          <button class="btn btn-success" role="button" (click)="updateUser = user">
+                            <!--bouton delet-->
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                          </button>
+                           &nbsp; &nbsp;
+                       
+                           <button class="btn btn-danger" role="button" (click)="deleteUser(user._id)">
+                             <!--bouton delet-->
+                             <i class="fa fa-trash" aria-hidden="true"></i>
+                           </button>
+                         </td>
+               
+                       </tr>
+               
+                     </tbody>
+                   </table>
+               
+                   <div class="container" *ngIf="updateUser">
+                     <h2>Modifier Utilisateur</h2>
+                     <div class="row">
+                         <div class="col-md-7" >
+                           
+                             <div class="form-group">
+                               <label> <strong>Name</strong></label>
+                               <input type="text" class="form-control" [(ngModel)]="updateUser.nom" placeholder="name">
+                             </div>
+                     
+                             <div class="form-group">
+                               <label><strong>Lastname</strong></label>
+                               <input type="text" class="form-control" [(ngModel)]="updateUser.prenom" placeholder="lastname">
+                             </div>
+                             <div class="form-group">
+                               <label><strong>Email</strong></label>
+                               <input type="text" class="form-control" [(ngModel)]="updateUser.email" placeholder="email">
+                             </div>
+                             <div class="form-group">
+                               <label><strong>Access</strong></label>
+                               <input type="checkbox" class="form-control" >
+                             </div>
+                             <div class="form-group">
+                               <label for="exampleFormControlSelect1">Role</label>
+                               <select class="form-control" [(ngModel)]="updateUser.role">
+                                 <option>admin</option>
+                                 <option>responsable</option>
+                                 <option>user</option>
+                               </select>
+                             </div>
+                     
+                             <input type="submit" value="Update" (click)="updateUserBtn()" class="btn btn-primary ">
+                             <div class="clearfix"></div>
+                           
+                         </div>
+                     
+                       </div>
+                 </div>
+               
+                 </div>
+                 <!-- /widget-content -->
+               
+                </div>
+               </div>
+
+          </div>
+      </div>
+
+  </div>
+
+
+
+
+</div>

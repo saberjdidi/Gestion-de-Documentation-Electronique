@@ -1,0 +1,207 @@
+<style class="cp-pen-styles">@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700&subset=latin-ext");
+</style>
+
+<div class="sidebar-is-reduced">
+  <header class="l-header">
+    <div class="l-header__inner clearfix">
+      <div class="c-header-icon js-hamburger">
+        <div class="hamburger-toggle"><span class="bar-top"></span><span class="bar-mid"></span><span class="bar-bot"></span></div>
+      </div>
+      <div class="c-header-icon has-dropdown"><i class="fa fa-bell"></i>
+        <div class="c-dropdown c-dropdown--notifications">
+          <div class="c-dropdown__header"></div>
+          <div class="c-dropdown__content"></div>
+        </div>
+      </div>
+      <div class="c-search">
+        <input class="c-search__input u-input" placeholder="Search..." type="text"/>
+      </div>
+      <div class="header-icons-group">
+        <div class="c-header-icon logout" (click)="logout()" ><i class="fa fa-power-off"></i></div>
+      </div>
+    </div>
+  </header>
+  <div class="l-sidebar">
+    <div class="logo">
+      <div class="logo__txt">O</div>
+    </div>
+    <div class="l-sidebar__content">
+      <nav class="c-menu js-menu">
+        <ul class="u-list">
+          <li class="c-menu__item is-active" data-toggle="tooltip" title="Document" routerLink="/document">
+            <div class="c-menu__item__inner"><i class="fa fa-file-text-o"></i>
+              <div class="c-menu-item__title"><span>Document</span></div>
+            </div>
+          </li>
+          <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Dashboard" routerLink="/dashboard">
+            <div class="c-menu__item__inner"><i class="fa fa-dashboard"></i>
+              <div class="c-menu-item__title"><span>Dashboard</span></div>
+            </div>
+          </li>
+          <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Accounts">
+            <div class="c-menu__item__inner"><i class="fa fa-users"></i>
+              <div class="c-menu-item__title"><span>Users</span></div>
+            </div>
+          </li>
+          <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Settings">
+            <div class="c-menu__item__inner"><i class="fa fa-cogs"></i>
+              <div class="c-menu-item__title"><span>Settings</span></div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  
+</div>
+<main class="l-main">
+  <div class="content-wrapper content-wrapper--with-bg">
+    
+    <div class="container">
+    <div class="row">
+      
+      <!-- /.col-md-12 -->
+      <div class="col-md-5 col-sm-12 pull-right">
+        <div class="panel panel-default" *ngFor="let doc of document">
+          <div class="panel-heading">
+            <h1 class="page-header small">Document </h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                      <th>Titre</th>
+                      <th>Contenu</th>
+                      <th>Date</th>
+                      <th>Categorie</th>
+                    
+                      <th class="td-actions"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <td>{{doc.titre}}</td>
+                        <td>{{doc.contenu}}</td>
+                        <td>{{doc.date}}</td>
+                        <td>{{doc.categorie}}</td>
+                        <td class="td-actions">
+                            <button class="btn btn-primary" (click)="updateDocument = doc" >
+                              <!--boutton modif-->
+                              <i class="fa fa-upload"></i>
+                            </button>
+                            &nbsp; 
+                        
+                            <button class="btn btn-danger" (click)="deleteBtn(doc._id)" >
+                              <!--bouton delet-->
+                              <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                          </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h1 class="page-header small">Categories</h1>
+          </div>
+          <div class="col-md-12">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let cat of categorie"><span class="fa fa-check-square"></span> {{cat.titre}}</li>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h1 class="page-header small">People Involved</h1>
+            <p class="page-subtitle small">Names of people involved in the project</p>
+          </div>
+          <div class="col-md-12">
+            <div class="memberblock"> <a href="" class="member"> <img src="assets/saber.jpg" alt="">
+              <div class="memmbername">Saber Jdidi</div>
+              </a> <a href="" class="member"> <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+              <div class="memmbername">Wiseem Lallahem</div>
+              </a> 
+             </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="col-md-7 col-sm-12 ">
+          <h1 class="text-center">Ajouter document</h1>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="embed-responsive embed-responsive-16by9">
+                <form [formGroup]="addForm">
+                  
+                   <div class="form-group">
+                     <label> <strong>Titre</strong></label>
+                     <input type="text" class="form-control" formControlName="titre" placeholder="name">
+                   </div>
+           
+                   <div class="form-group">
+                     <label><strong>Contenu</strong></label>
+                     <input type="text" class="form-control" formControlName="contenu" placeholder="contenu">
+                   </div>
+                   <div class="form-group">
+                      <label><strong>Date</strong></label>
+                      <input type="date" class="form-control" formControlName="date">
+                    </div>
+                   
+                   <div class="form-group">
+                     <label >Categorie</label>
+                     <select class="form-control" formControlName="categorie">
+                       <option *ngFor="let cat of categorie">{{cat.titre}}</option>
+                       
+                     </select>
+                   </div>  
+           
+                   <button  type="submit" class="btn btn-primary" (click)="documentBtn()">Ajouter </button>
+                   <div class="clearfix"></div>
+                </form>
+            </div> 
+          </div>
+        </div>
+
+        
+        <div class="panel panel-default" *ngIf="updateDocument">
+            <h1 class="text-center">Modifier document</h1>
+          <div class="panel-body">
+            <div class="embed-responsive embed-responsive-16by9">
+                
+                  
+                   <div class="form-group">
+                     <label> <strong>Titre</strong></label>
+                     <input type="text" class="form-control" [(ngModel)]="updateDocument.titre" placeholder="name">
+                   </div>
+           
+                   <div class="form-group">
+                     <label><strong>Contenu</strong></label>
+                     <input type="text" class="form-control" [(ngModel)]="updateDocument.contenu" placeholder="contenu">
+                   </div>
+                   <div class="form-group">
+                      <label><strong>Date</strong></label>
+                      <input type="date" class="form-control" [(ngModel)]="updateDocument.date">
+                    </div>
+                   
+                   <div class="form-group">
+                     <label >Categorie</label>
+                     <select class="form-control" [(ngModel)]="updateDocument.categorie">
+                       <option *ngFor="let cat of categorie">{{cat.titre}}</option>
+                       
+                     </select>
+                   </div>  
+           
+                   <button  type="submit" class="btn btn-success" (click)="updatedocumentBtn()">Modifier </button>
+                   <div class="clearfix"></div>
+               
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+    
+  </div>
+</main>
+

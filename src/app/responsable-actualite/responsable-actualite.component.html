@@ -1,0 +1,132 @@
+<style class="cp-pen-styles">@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700&subset=latin-ext");
+</style>
+  
+  <div class="sidebar-is-reduced">
+    <header class="l-header">
+      <div class="l-header__inner clearfix">
+        <div class="c-header-icon js-hamburger">
+          <div class="hamburger-toggle"><span class="bar-top"></span><span class="bar-mid"></span><span class="bar-bot"></span></div>
+        </div>
+        <div class="c-header-icon has-dropdown"><i class="fa fa-bell"></i>
+          <div class="c-dropdown c-dropdown--notifications">
+            <div class="c-dropdown__header"></div>
+            <div class="c-dropdown__content"></div>
+          </div>
+        </div>
+        <div class="c-search">
+          <input class="c-search__input u-input" placeholder="Search..." type="text"/>
+        </div>
+        <div class="header-icons-group">
+          <div class="c-header-icon logout" routerLink="/responsable-home" ><i class="fa fa-power-off"></i></div>
+        </div>
+      </div>
+    </header>
+    <div class="l-sidebar">
+      <div class="logo">
+        <div class="logo__txt"></div>
+      </div>
+      <div class="l-sidebar__content">
+        <nav class="c-menu js-menu">
+          <ul class="u-list">
+              <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Dashboard" routerLink="/responsable-home">
+                <div class="c-menu__item__inner"><i class="fa fa-home"></i>
+                  <div class="c-menu-item__title"><span>Home</span></div>
+                </div>
+              </li>
+            <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Document" routerLink="/responsable-document">
+              <div class="c-menu__item__inner"><i class="fa fa-file-text-o"></i>
+                <div class="c-menu-item__title"><span>Document</span></div>
+              </div>
+            </li>
+            
+            <li class="c-menu__item is-active" data-toggle="tooltip" title="Accounts" routerLink="/resposable-actualite">
+              <div class="c-menu__item__inner"><i class="fa fa-calendar"></i>
+                <div class="c-menu-item__title"><span>Actualite</span></div>
+              </div>
+            </li>
+            <li class="c-menu__item has-submenu" data-toggle="tooltip" title="Settings">
+              <div class="c-menu__item__inner"><i class="fa fa-cogs"></i>
+                <div class="c-menu-item__title"><span>Settings</span></div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    
+  </div>
+  <main class="l-main">
+    <div class="content-wrapper content-wrapper--with-bg">
+      <div class="col-md-10 col-sm-11 display-table-cell v-align"> 
+          
+      <div class="container">
+       <div class="row">
+          <h1>Actualité</h1>
+          <div class="col-md-8">
+              <div class="card">
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-md-6 border-right">
+                              
+                          </div>
+                          
+                          
+                      </div>
+                      <hr>
+                      <div class="row">
+                          <div class="col-md-8 bg-light card-body">
+                              
+                              <form [formGroup]="addForm" >
+                                    <div class="form-group">
+                                      <label for="text" class="col-12 col-form-label">Titre</label> 
+                                      <div class="col-12">
+                                        <input class="form-control" type="text" formControlName="titre" placeholder="titre">
+                                      </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="form-group">
+                                      <label for="description" class="col-12 col-form-label">Description</label> 
+                                      <div class="col-12">
+                                        <textarea  cols="40" rows="4" class="form-control" formControlName="description" ></textarea>
+                                      </div>
+                                    </div> 
+                                    <div class="form-group row">
+                                      <div class="col-12">
+                                       &nbsp; &nbsp; &nbsp; <button  type="submit" class="btn btn-primary" (click)="actualiteBtn()" ><i class="fa fa-plus-circle"></i> &nbsp; Ajouter</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                          </div>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+        
+       </div>
+      </div>
+
+      <div class="container" >
+          <div class="row" >
+           <ul class="thumbnails" >
+              <div class="col-md-3 col-sm-3" *ngFor="let act of actualite">
+                  <div class="thumbnail" >
+                      <img src="assets/images.jpg" alt="ALT NAME" class="img-responsive" />
+                      <div class="caption">
+                           <h2>{{act.titre}}</h2>
+                          <h4>{{act.description}}</h4>
+                          
+                      </div>
+                  </div>
+              </div>
+              
+           </ul>
+          </div>
+      </div>
+      
+    </div>
+    </div>
+  </main>
+  
+  

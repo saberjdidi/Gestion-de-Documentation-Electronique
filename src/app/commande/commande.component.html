@@ -1,0 +1,81 @@
+<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><i class="fa fa-user-secret"></i> My Profile</a>
+      </div>
+      <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+                  <li><a  class="dropdown-toggle"> document</a></li>
+                  <li><a  class="dropdown-toggle"> actualite</a></li>
+              <li class="dropdown">
+                  <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-user-circle"></i> User</a>
+                  <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                      <li><a href="#"><i class="fa fa-user-secret"></i> My Profile</a></li>
+                  </ul>
+              </li>
+              <li><a (click)="logoutBtn()" ><i class="fa fa-sign-out"></i> Logout</a></li>
+          </ul>
+      </div>
+  </div>
+  <!-- /container -->
+</div>
+
+<!-- /Header -->
+
+<!-- Main -->
+
+<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+
+  <ul class="nav nav-pills nav-stacked" style="border-right:1px solid black">
+      <!--<li class="nav-header"></li>-->
+      <li><a routerLink="/home"><i class="fa fa-home"></i> Home</a></li>
+      <li><a href="#"><i class="fa fa-file-text-o"></i> Document</a></li>
+      <li><a href="#"><i class="fa fa-calendar"></i> Actualite</a></li>
+      <li><a href="#"><i class="fa fa-list"></i> Categorie</a></li>
+
+  </ul>
+</div><!-- /span-3 -->
+<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+  <!-- Right -->
+
+  <a href="#"><strong><span class="fa fa-dashboard"></span> Home</strong></a>
+  <hr>
+  <div class="row">
+    <div class="col-md-6 col-sm-12 ">
+          
+      <div class="panel panel-default">
+          <div class="panel-heading text-center">
+            <h3 >Demande Document</h3>
+          </div>
+          <br>
+          <div class="col-md-12">
+            
+            <form [formGroup]="addForm">
+              <div class="form-group">
+                <label>Nombre de document :</label>
+                <input class="form-control" type="number" formControlName="nombre_doc">
+              </div>
+              <div class="form-group">
+                <label>Date :</label>
+                <input class="form-control" type="date" formControlName="date">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-info" (click)="commandeBtn()" >Demander</button>
+              </div>
+            </form>
+            
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+    
+   
+    </div>
+    
+  </div>  
+</div>
